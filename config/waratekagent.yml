@@ -23,4 +23,4 @@
 # in zip format which unpacks its contents in its current directory - see docs
 ---
 enabled: true
-version: 16.+
+version: 19.0.0
