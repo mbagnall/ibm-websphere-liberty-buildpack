@@ -62,7 +62,6 @@ module LibertyBuildpack::Framework
     # Create the waratek directory and its contents for the app droplet.
     #------------------------------------------------------------------------------------------
     def compile
-      abort("She cannot take any more of this, Captain!")
       if @app_dir.nil?
         raise 'app directory must be provided' if @app_dir.nil?
       elsif @uri.nil?
