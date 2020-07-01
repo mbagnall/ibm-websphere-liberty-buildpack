@@ -113,8 +113,8 @@ module LibertyBuildpack::Framework
       waratek_agent = File.join(waratek_home_dir, WARATEK_JAR)
       @java_opts << "-javaagent:#{waratek_agent}"
       # Set up the agentpath parameter
-      waratek_lib = File.join(waratek_home_dir, WARATEK_LIB)
-      @java_opts << "-agentpath:#{waratek_lib}"
+      #waratek_lib = File.join(waratek_home_dir, WARATEK_LIB)
+      #@java_opts << "-agentpath:#{waratek_lib}"
       # Set up container home - the guest JDK
       java_home = File.join(app_dir, DEFAULT_JAVA)
       @java_opts << "-Dcom.waratek.ContainerHome=#{java_home}"
@@ -136,7 +136,7 @@ module LibertyBuildpack::Framework
     # Name of Waratek Agent jar in the download
     WARATEK_JAR = 'waratek.jar'.freeze
     # Name of the Waratek library in the download
-    WARATEK_LIB = 'libwaratek.so'.freeze
+    #WARATEK_LIB = 'libwaratek.so'.freeze
     # Subdirectory under the app directory into which we place the download and unpack
     WARATEK_DIR = '.waratek'.freeze
     # Default location of Java
@@ -147,7 +147,7 @@ module LibertyBuildpack::Framework
     end
 
     def version_identifier
-      "waratek_plugin-#{@version.to_s.split('_')[0]}"
+      "waratek-secure-19.0.0"
     end
 
     #-----------------------------------------------------------------------------------------
