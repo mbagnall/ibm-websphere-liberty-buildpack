@@ -1,6 +1,6 @@
 # Encoding: utf-8
 # IBM WebSphere Application Server Liberty Buildpack
-# Copyright 2013-2014 the original author or authors.
+# Copyright IBM Corp. 2013, 2019
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -53,8 +53,10 @@ module LibertyBuildpack::Jre
     #
     # @return [String, nil] returns +ibmjdk-<version>+.
     def detect
-      @version = OpenJdk.find_openjdk(@configuration)[0]
-      id @version if !@jvm_type.nil? && 'openjdk'.casecmp(@jvm_type) == 0
+      if !@jvm_type.nil? && 'openjdk'.casecmp(@jvm_type) == 0
+        @version = OpenJdk.find_openjdk(@configuration)[0]
+        id(@version)
+      end
     end
 
     # Downloads and unpacks a OpenJdk
@@ -108,6 +110,14 @@ module LibertyBuildpack::Jre
       FileUtils.mkdir_p(java_home)
 
       system "tar xzf #{file.path} -C #{java_home} --strip 1 2>&1"
+      rc = system("[ $(ls #{java_home} | wc -l) = 1 ] && [ $(ls #{java_home} | grep -w notices.txt | wc -l) = 0 ]")
+
+      if rc
+        FileUtils.rm_rf(java_home)
+        FileUtils.mkdir_p(java_home)
+        system "tar xzf #{file.path} -C #{java_home} --strip 2 2>&1"
+      end
+
       puts "(#{(Time.now - expand_start_time).duration})"
     end
 

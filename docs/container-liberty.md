@@ -28,10 +28,10 @@ The Liberty container can be configured by modifying the [`config/liberty.yml`][
 | ---- | -----------
 |`repository_root`| The URL of the Liberty repository index ([details][repositories]).
 |`version`| The version of the Liberty profile. You can find the candidate versions [here][index.yml].
-| `type` | The archive type of Liberty runtime to download. One of `webProfile6`, `webProfile7`, `javaee7`, or `kernel`. The default value is `webProfile7`. 
+| `type` | The archive type of Liberty runtime to download. One of `webProfile6`, `webProfile7`, `javaee7`, or `kernel`. The default value is `webProfile7`.
 |`minify`| Boolean indicating whether the Liberty server should be [minified](#minify). The default value is `false`.
-| `liberty_repository_properties` | [Liberty repository configuration](#liberty-repository-configuration). 
-| `app_archive` | [Default configuration](#default-configuration) for WAR and EAR files. 
+| `liberty_repository_properties` | [Liberty repository configuration](#liberty-repository-configuration).
+| `app_archive` | [Default configuration](#default-configuration) for WAR and EAR files.
 
 #### Minify
 
@@ -64,16 +64,16 @@ liberty_repository_properties:
   myRepo.userPassword: myPassword
 ```
 
-#### Default configuration 
+#### Default configuration
 
-The buildpack provides a default `server.xml` configuration when deploying WAR or EAR files. That default configuration is populated with a list of Liberty features based on the `["app_archive"]["features"]` setting. The `["app_archive"]["implicit_cdi"]` setting controls whether archives that do not contain the `beans.xml` file are scanned for CDI annotations. 
+The buildpack provides a default `server.xml` configuration when deploying WAR or EAR files. That default configuration is populated with a list of Liberty features based on the `["app_archive"]["features"]` setting. The `["app_archive"]["implicit_cdi"]` setting controls whether archives that do not contain the `beans.xml` file are scanned for CDI annotations.
 
 ```yaml
 app_archive:
  # Scan archives that do not contain beans.xml for bean-definition annotations (cdi 1.2)
  implicit_cdi: false
  # Default features
- features: 
+ features:
  - beanValidation-1.1
  - cdi-1.2
  - ejbLite-3.2
@@ -121,4 +121,3 @@ The environment variables can also be specified in the [manifest.yml](http://doc
 [version_syntax]: util-repositories.md#version-syntax-and-ordering
 [index.yml]: http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/index.yml
 [Liberty repository]: https://developer.ibm.com/wasdev/downloads/
-

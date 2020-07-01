@@ -1,5 +1,5 @@
 # IBM WebSphere Application Server Liberty Buildpack
-# Copyright 2013-2014 the original author or authors.
+# Copyright IBM Corp. 2013, 2019
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ containers:
 jres:
   - "LibertyBuildpack::Jre::IBMJdk"
   - "LibertyBuildpack::Jre::OpenJdk"
+  - "LibertyBuildpack::Jre::OpenJ9"
 frameworks:
   - "LibertyBuildpack::Framework::Env"
   - "LibertyBuildpack::Framework::JavaOpts"

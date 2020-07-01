@@ -39,7 +39,7 @@ with Cloud Foundry.  That server.xml will look something like this:
 
 ```
 
-**NOTE**: The `application` element will be updated with the type of the application you deployed (war or ear) and the context root for your application. By default, the context root of `/` is used, unless otherwise set in the `WEB-INF/ibm-web-ext.xml` file embedded with your application. 
+**NOTE**: The `application` element will be updated with the type of the application you deployed (war or ear) and the context root for your application. By default, the context root of `/` is used, unless otherwise set in the `WEB-INF/ibm-web-ext.xml` file embedded with your application.
 
 If you deployed an application using the command `cf push foo`, and your domain is `mydomain.com`, and the application uses the default context root, the application will be accessible from `http://foo.mydomain.com/`. If the application uses a non-default context root, say `/bar`, the application will be accessible from `http://foo.mydomain.com/bar`.
 
@@ -57,9 +57,9 @@ will push the packaged server to the cloud. The buildpack will detect
 the server.xml contained within the package and proceed to modify it.
 
 You can also use this method to install your own Liberty features.
-By placing your feature manifest in the `${wlp.user.dir}/extension/lib/features` 
+By placing your feature manifest in the `${wlp.user.dir}/extension/lib/features`
 directory and the feature bundle .jar in the `${wlp.user.dir}/extension/lib` directory,
-your feature will be installed to that Liberty instance. When you package Liberty using 
+your feature will be installed to that Liberty instance. When you package Liberty using
 `./bin/server package myServer --include=usr`, those features are also packaged, as they
 are present in the `usr` directory. This means that when you push that packaged
 server, these features will still be present in the `usr` directory and installed to that instance.

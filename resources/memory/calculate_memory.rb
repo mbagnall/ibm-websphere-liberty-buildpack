@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # Encoding: utf-8
 # IBM WebSphere Application Server Liberty Buildpack
-# Copyright 2013-2017 the original author or authors.
+# Copyright IBM Corp. 2018
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ def java_opts_file
 end
 
 def set_ibmjdk_config
-  if File.readlines(java_opts_file).grep(/-Xmx/).size > 0
+  if File.readlines(java_opts_file).grep(/^-Xmx/).size > 0
     puts 'User already set max heap size (-Xmx)'
   else
     calculated_heap_size = heap_size
@@ -62,7 +62,7 @@ def set_ibmjdk_config
 end
 
 def set_openjdk_config
-  if File.readlines(java_opts_file).grep(/-Xmx/).size > 0
+  if File.readlines(java_opts_file).grep(/^-Xmx/).size > 0
     puts 'User already set max heap size (-Xmx)'
   else
     puts 'Setting openJDK memory configuration'

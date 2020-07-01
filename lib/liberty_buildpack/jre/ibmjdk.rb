@@ -1,6 +1,6 @@
 # Encoding: utf-8
 # IBM WebSphere Application Server Liberty Buildpack
-# Copyright 2013-2014 the original author or authors.
+# Copyright IBM Corp. 2013, 2019
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -76,13 +76,15 @@ module LibertyBuildpack::Jre
         print "\nYou have not accepted the IBM JVM License.\n\nVisit the following uri:\n#{@license}\n\nExtract the license number (D/N:) and place it inside your manifest file as a ENV property e.g. \nENV: \n  IBM_JVM_LICENSE: {License Number}.\n"
         raise
       end
-
+      ibm_var = ' IBM'
       download_start_time = Time.now
       if @uri.include? '://'
-        print "-----> Downloading IBM #{@version} JRE from #{@uri} ... "
+        print "-----> Downloading#{ibm_var} #{@version} JRE from #{@uri} ... "
       else
         filename = File.basename(@uri)
-        print "-----> Retrieving IBM #{@version} JRE (#{filename}) ... "
+        # if open is in the name then the jre is not IBM's so let's not display IBM in the output
+        ibm_var = '' if filename.include? 'open'
+        print "-----> Retrieving#{ibm_var} #{@version} JRE (#{filename}) ... "
       end
       LibertyBuildpack::Util::Cache::ApplicationCache.new.get(@uri) do |file| # TODO: Use global cache
         puts "(#{(Time.now - download_start_time).duration})"
@@ -100,7 +102,11 @@ module LibertyBuildpack::Jre
       @java_opts.concat tls_opts
       @java_opts.concat default_dump_opts
       @java_opts << '-Xshareclasses:none'
+      @java_opts << '-XX:-TransparentHugePage'
       @java_opts << "-Xdump:tool:events=systhrow,filter=java/lang/OutOfMemoryError,request=serial+exclusive,exec=#{@common_paths.diagnostics_directory}/#{KILLJAVA_FILE_NAME}"
+      unless @java_opts.include? '-Xverbosegclog'
+        @java_opts << '-Xverbosegclog:/home/vcap/logs/verbosegc.%pid.%seq.log,5,10000'
+      end
     end
 
     private

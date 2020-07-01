@@ -10,7 +10,7 @@ To fork the Buildpack and host your own binaries, then complete the following:
 
 4. Download the latest IBM JRE for Linux from the [developerWorks Java site][].
   The download will be in an archive .bin format.
-   
+
 5. Copy the binaries to a location that the buildpack will be able to access via HTTP. For details see
   [Repositories][]. For an example see [Setting up your Web Server][]
 

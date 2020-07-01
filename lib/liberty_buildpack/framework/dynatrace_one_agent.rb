@@ -1,6 +1,6 @@
 # Encoding: utf-8
 # IBM WebSphere Application Server Liberty Buildpack
-# Copyright 2016-2017 the original author or authors.
+# Copyright IBM Corp. 2016, 2017
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -88,6 +88,7 @@ module LibertyBuildpack::Framework
     #------------------------------------------------------------------------------------------
     def release
       @java_opts << "-agentpath:#{agent_path}"
+      @java_opts << '-Xshare:off'
     end
 
     private
@@ -100,13 +101,15 @@ module LibertyBuildpack::Framework
     APITOKEN = 'apitoken'.freeze
     APIURL = 'apiurl'.freeze
     ENVIRONMENTID = 'environmentid'.freeze
+    NETWORKZONE = 'networkzone'.freeze
 
     # dynatrace's directory of artifacts in the droplet
     DYNATRACE_HOME_DIR = '.dynatrace_one_agent'.freeze
 
     # dynatrace ENV variables
     DT_APPLICATION_ID = 'DT_APPLICATIONID'.freeze
-    DT_HOST_ID = 'DT_HOST_ID'.freeze
+    DT_LOGSTREAM = 'DT_LOGSTREAM'.freeze
+    DT_NETWORK_ZONE = 'DT_NETWORK_ZONE'.freeze
 
     #------------------------------------------------------------------------------------------
     # Searches for a single service which name, label or tag contains 'dynatrace' and
@@ -165,7 +168,10 @@ module LibertyBuildpack::Framework
 
       variables = {}
       variables[DT_APPLICATION_ID] = application_id
-      variables[DT_HOST_ID] = host_id
+      variables[DT_LOGSTREAM] = 'stdout'
+
+      credentials = service[CREDENTIALS_KEY]
+      variables[DT_NETWORK_ZONE] = credentials[NETWORKZONE] if credentials.key?(NETWORKZONE)
 
       env_file_name = File.join(profiled_dir, '0dynatrace-app-env.sh')
       env_file = File.new(env_file_name, 'w')

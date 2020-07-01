@@ -65,11 +65,11 @@ More formally, the grammar of the String is:
 Opt_out_string :: <service_type_specification[<delimiter>service_type_specification]*
 <service_type_specification> :: <service_type>=<option>
 <service_type> :: service type (service label as it appears in VCAP_SERVICES)
-<option> :: all | config 
+<option> :: all | config
 <delimiter> :: one white space character
 ```
 
-Use the “all” option to opt out of all automatic configuration actions for a service. Use the “config” option to only opt out
+Use the ï¿½allï¿½ option to opt out of all automatic configuration actions for a service. Use the ï¿½configï¿½ option to only opt out
 of configuration update actions.
 
 ```
@@ -81,7 +81,7 @@ env:
 
 env:
   services_autoconfig_excludes: mysql=config mongodb-2.2=all
-``` 
+```
 
 [Accessing the Information of Bound Services]: server-xml-options.md#accessing-the-information-of-bound-services
 [Modifications]: server-xml-options.md#serverxml-modifications

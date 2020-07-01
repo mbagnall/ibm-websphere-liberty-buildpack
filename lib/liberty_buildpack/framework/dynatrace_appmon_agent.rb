@@ -1,6 +1,6 @@
 # Encoding: utf-8
 # IBM WebSphere Application Server Liberty Buildpack
-# Copyright 2016 the original author or authors.
+# Copyright IBM Corp. 2016
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -93,6 +93,7 @@ module LibertyBuildpack::Framework
 
       # create the dynatrace agent command as java_opts
       @java_opts << "-agentpath:#{dt_agent}=#{get_service_options}"
+      @java_opts << '-Xshare:off'
     end
 
     private

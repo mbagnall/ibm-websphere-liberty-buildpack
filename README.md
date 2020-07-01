@@ -49,9 +49,10 @@ All Documentation is available in the Docs folder of the buildpack.
     * [JRebel Agent](docs/framework-jrebel-agent.md)
     * [New Relic Agent](docs/framework-new-relic-agent.md)
     * [Spring Auto Reconfiguration](docs/framework-spring-auto-reconfiguration.md)
-* JREs
-    * [IBM JRE](docs/ibm-jdk.md)
+* JVMs
+    * [IBM SDK](docs/ibm-jdk.md)
     * [OpenJDK](docs/open-jdk.md)
+    * [OpenJ9](docs/openj9.md)
 * [Server Behavior xml Options](docs/server-xml-options.md)
 * [Forking the buildpack](docs/forking.md)
 * [Overriding buildpack configuration](docs/configuration.md)
@@ -101,6 +102,6 @@ bundle install --gemfile Gemfile.rubymine-debug
 [tuning options]: docs/tuning.md
 [java main push]: docs/java-main.md
 
-[Liberty-License]: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/18.0.0.1/lafiles/runtime/en.html
-[JVM-License]: http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&li_formnum=L-PMAA-A3Z8P2&title=IBM%AE+SDK%2C+Java%99+Technology+Edition%2C+Version+8.0&l=en
+[Liberty-License]: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/downloads/wlp/20.0.0.6/lafiles/runtime/en.html
+[JVM-License]: http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?la_formnum=&li_formnum=L-SMKR-AVSEUH&title=IBM%AE+SDK%2C+Java%99+Technology+Edition%2C+Version+8.0&l=en
 [manifest documentation]: http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html
