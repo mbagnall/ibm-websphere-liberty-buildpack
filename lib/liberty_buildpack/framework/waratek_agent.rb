@@ -173,7 +173,7 @@ module LibertyBuildpack::Framework
     #------------------------------------------------------------------------------------------
     def download_agent(version_desc, uri_source, target_dir)
       download_start_time = Time.now
-      LibertyBuildpack::Util.download_zip(version_desc, 'https://files.cf-hsm.io/protectapp-installer/protectapp-jce-8.4.0.zip', 'Waratek Agent', target_dir)
+      LibertyBuildpack::Util.download_zip(version_desc, uri_source, 'Waratek Agent', target_dir)
     rescue => e
       raise "Unable to download the Waratek Agent zip. Ensure that the agent zip at #{uri_source} is available and accessible. #{e.message}"
     end
