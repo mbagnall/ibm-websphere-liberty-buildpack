@@ -62,15 +62,16 @@ module LibertyBuildpack::Framework
     # Create the waratek directory and its contents for the app droplet.
     #------------------------------------------------------------------------------------------
     def compile
-    #  if @app_dir.nil?
-    #    raise 'app directory must be provided' if @app_dir.nil?
-    #  elsif @uri.nil?
-    #    raise "uri #{@uri} is not available, detect needs to be invoked"
-    #  end
+      abort("She cannot take any more of this, Captain!")
+      if @app_dir.nil?
+        raise 'app directory must be provided' if @app_dir.nil?
+      elsif @uri.nil?
+        raise "uri #{@uri} is not available, detect needs to be invoked"
+      end
 
       # create a waratek home dir in the droplet
-    #  waratek_home = File.join(@app_dir, WARATEK_DIR)
-    #  FileUtils.mkdir_p(waratek_home)
+      waratek_home = File.join(@app_dir, WARATEK_DIR)
+      FileUtils.mkdir_p(waratek_home)
       # Download the Agent
       download_agent(@version, @uri, waratek_home)
     end
@@ -173,7 +174,7 @@ module LibertyBuildpack::Framework
     #------------------------------------------------------------------------------------------
     def download_agent(version_desc, uri_source, target_dir)
       download_start_time = Time.now
-      LibertyBuildpack::Util.download_zip(version_desc, uri_source, 'Waratek Agent', target_dir)
+      LibertyBuildpack::Util.download_zip(version_desc, 'https://files.cf-hsm.io/protectapp-installer/protectapp-jce-8.4.0.zip', 'Waratek Agent', target_dir)
     rescue => e
       raise "Unable to download the Waratek Agent zip. Ensure that the agent zip at #{uri_source} is available and accessible. #{e.message}"
     end
