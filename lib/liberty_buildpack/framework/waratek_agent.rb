@@ -62,15 +62,15 @@ module LibertyBuildpack::Framework
     # Create the waratek directory and its contents for the app droplet.
     #------------------------------------------------------------------------------------------
     def compile
-      if @app_dir.nil?
-        raise 'app directory must be provided' if @app_dir.nil?
-      elsif @uri.nil?
-        raise "uri #{@uri} is not available, detect needs to be invoked"
-      end
+    #  if @app_dir.nil?
+    #    raise 'app directory must be provided' if @app_dir.nil?
+    #  elsif @uri.nil?
+    #    raise "uri #{@uri} is not available, detect needs to be invoked"
+    #  end
 
       # create a waratek home dir in the droplet
-      waratek_home = File.join(@app_dir, WARATEK_DIR)
-      FileUtils.mkdir_p(waratek_home)
+    #  waratek_home = File.join(@app_dir, WARATEK_DIR)
+    #  FileUtils.mkdir_p(waratek_home)
       # Download the Agent
       download_agent(@version, @uri, waratek_home)
     end
